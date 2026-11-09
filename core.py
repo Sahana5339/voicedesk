@@ -429,12 +429,12 @@ def eval_rows(path, audio=False):
     fails = []
     if audio:
         import os
-        import gnani
+        import syst
         key = os.environ.get("GNANI_API_KEY")
     for r in rows:
         text, lang = r.get("text", ""), None
         if audio and r.get("wav"):
-            res = gnani.transcribe(open(r["wav"], "rb").read(), "indic-auto", "prisma-v3.0", key)
+            res = syst.transcribe(open(r["wav"], "rb").read(), "indic-auto", "prisma-v3.0", key)
             text, lang = res["text"], res["lang"]
         tk = make_ticket(text, lang, 0)
         c_ok, u_ok = tk["category"] == r["category"], tk["urgency"] == r["urgency"]

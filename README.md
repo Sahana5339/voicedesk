@@ -49,4 +49,4 @@ _Fill in your own audio results here:_ ___
 - Prototype tested on made-up complaints, not real customer data.
 
 ## Contribution
-Solo project: design, implementation, testing and demo by _your name_.
+Solo project: design, implementation, testing, and demo.

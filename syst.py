@@ -1,4 +1,4 @@
-"""Gnani API helpers: Prisma speech-to-text and Timbre text-to-speech (REST)."""
+"""Gnani AI API helpers: Prisma speech-to-text and Timbre text-to-speech (REST)."""
 import os
 import struct
 import time

@@ -10,7 +10,7 @@ import streamlit as st
 from dotenv import load_dotenv
 
 import core
-import gnani
+import syst
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 load_dotenv(os.path.join(HERE, ".env"))
@@ -52,7 +52,7 @@ def due_text(t):
 # ---------------------------------------------------------------- sidebar
 with st.sidebar:
     st.header("Settings")
-    lang_label = st.selectbox("Customer's language", list(gnani.LANGS), index=0,
+    lang_label = st.selectbox("Customer's language", list(syst.LANGS), index=0,
                               help="Auto-detect lets the customer speak any supported Indian language.")
     speak = st.toggle("Speak replies aloud (Timbre)", value=True)
     follow = st.toggle("Ask a follow-up question when a key detail is missing", value=True)
@@ -72,7 +72,7 @@ def synth(text, reply_lang, warn):
     if not (speak and api_key):
         return None
     try:
-        return gnani.synthesize(text, reply_lang, api_key)
+        return syst.synthesize(text, reply_lang, api_key)
     except Exception as e:  # noqa
         warn.append(f"Voice reply unavailable: {e}")
         return None
@@ -86,15 +86,15 @@ def stt(audio_bytes, filename="audio.wav"):
                   "warn": ["Gnani API key not configured. Add GNANI_API_KEY to the .env file beside app.py."],
                   "played": True}
         return None, notes
-    code, model = gnani.LANGS[lang_label]
+    code, model = syst.LANGS[lang_label]
     try:
         try:
-            return gnani.transcribe(audio_bytes, code, model, api_key, filename), notes
+            return syst.transcribe(audio_bytes, code, model, api_key, filename), notes
         except Exception as e:  # noqa
             if code != "indic-auto":
                 raise
             notes.append(f"Auto-detect failed ({e}); retried as Hindi. Pick the language in the sidebar if needed.")
-            return gnani.transcribe(audio_bytes, "hi-IN", None, api_key, filename), notes
+            return syst.transcribe(audio_bytes, "hi-IN", None, api_key, filename), notes
     except Exception as e:  # noqa
         S.last = {"ticket": None, "audio": None, "warn": [str(e)], "played": True}
         return None, notes
