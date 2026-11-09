@@ -1,0 +1,23 @@
+VOICEDESK - HOW TO RUN (Windows)
+
+1. Unzip. Open the folder that contains app.py.
+2. Open the .env file beside app.py in a text editor and add your key after the equals sign:
+   GNANI_API_KEY=your_key_here
+3. Click the address bar of File Explorer, type  cmd  and press Enter.
+4. Install:        pip install -r requirements.txt
+5. Check the logic (optional):   python core.py --selftest
+6. Start the app:  python -m streamlit run app.py
+   (your browser opens at http://localhost:8501 ; use Chrome or Edge)
+7. Get your Gnani API key at https://app.gnani.ai/voice. The app reads it from .env and does not show it in the UI.
+8. Open the "Speak" tab, click the microphone, allow microphone access, speak a complaint, click stop.
+   Example (Hindi):    "मेरे अकाउंट से बिना अनुमति पैसे कट गए, यह धोखाधड़ी है"
+   Example (Hinglish): "Mera order teen din se nahi aaya, order number 48213"
+   Example (Kannada):  "ನನ್ನ ಆರ್ಡರ್ ಮೂರು ದಿನಗಳಿಂದ ಬಂದಿಲ್ಲ"
+   Example (English):  "I was charged twice for my last bill, 1200 rupees extra"
+9. Try the follow-up dialogue: say  "Mera order nahi aaya, bahut deri ho gayi"  (no order number).
+   The assistant asks for the order number; answer "four eight two one three". Then report the same order again
+   to see the REPEAT flag. A fraud complaint is escalated at once, with no questions.
+10. You get: transcript, ticket (category, urgency, response target), and a spoken confirmation.
+   No microphone? Use the "Type / sample" tab (skips speech-to-text) or "Upload audio".
+
+To stop the app press Ctrl+C in the black window. Never share or upload your API key. The .env file is ignored by Git.

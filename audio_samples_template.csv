@@ -1,0 +1,3 @@
+wav,text,language,category,urgency
+clips/en_fraud.wav,,English,Fraud / Unauthorised transaction,Critical
+clips/hi_delivery.wav,,Hindi,Delivery / Order,High
